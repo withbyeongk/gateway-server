@@ -24,6 +24,18 @@ import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
 
+/*
+	WebFilter : Spring에서 제공하는 인터셉터 기능을 대신 제공
+	Mono : 데이터 전송처리를 위해 사용
+	ServerWebExchange : HTTP 요청과 응답에 대한 액세스를 제공
+	WebFilterChain : 다음 필터에 항목을 전달하기 위해 사용
+	decoratedRequest : request 객체에 존재하는 요청 데이터를 스트리밍하기 위해 ServerHttpRequestDecorator 클래스를 통해 기능 재정의가 된 객체
+		-> 실제로 요청 데이터를 다음 filter나 마이크로 서비스에 전달할 때 request로 들어온 json 데이터를 출력하는 부분을 decoratedrequest가 재정의된 기능에 개발해야 함
+	decoratedResponse: response 객체에 존재하는 응답 데이터를 읽어오기 위해 ServerHttpResponseDecorator 클래스를 통해 기능 재정의가 된 객체
+		-> response json 데이터 출력기능은 decoratedresponse가 재정의된 기능에 개발해야 함
+		
+		
+ */
 @Component
 @Slf4j
 public class LoggingFilter implements WebFilter {
